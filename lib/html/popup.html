@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clout Faves</title>
+    <link rel="stylesheet" href="../vendors/css/bootstrap.css">
+    <link rel="stylesheet" href="../vendors/css/jquery.tagsinput.min.css">
+    <style>
+        .bootstrap-tagsinput .tag {
+            margin-right: 2px;
+            color: black;
+            box-shadow: inset 0 1px 0 rgb(255 255 255 / 20%), 0 1px 2px rgb(0 0 0 / 5%);
+            background: #d6c8c8;
+            border-radius: 5px;
+            padding: 1px;
+            font-size: 14px;
+        }
+
+        #usersSelected_tagsinput {
+            width: 100% !important;
+            min-height: auto !important;
+            height: auto !important;
+        }
+
+        .bootstrap-tagsinput {
+            width: 100%;
+            margin: 10px 0px;
+        }
+
+        input#usersSelected_tag {
+            color: rgb(102, 102, 102) !important;
+            width: 98px !important;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="../vendors/css/bitcloutlist.css">
+</head>
+
+<body>
+    <div style="width: 650px;height: 600px;padding: 10px;" id="app">
+        <div id="loading">
+            <img src="../images/loader.gif" width="300" height="300"
+                style=" transform: translate(-50%, -50%); top: 50%; position: absolute; left: 50%; " alt="loader">
+        </div>
+        <div id="loaded" style="display: none;">
+            <div style="position: fixed;width: 97%;height: fit-content;z-index: 999999;">
+                <h1 style="transform: translateX(-50%);margin-left: 50%;text-align: center;">Clout Faves List</h1>
+                <select style="display: none;">
+                </select>
+                <input type="text" id="usersSelected" style="margin-bottom: 10px;">
+            </div>
+            <div style="margin-top: 0px;position: fixed;width: 97%;top: 110px;overflow: auto;height: 490px;">
+                <table class="data-table" style=" margin-top: 10px; ">
+                    <thead>
+                        <tr>
+                            <th>Profile</th>
+                            <th class="number1">
+                                Coin Price
+                            </th>
+                            <th class="number1">
+                                Last %
+                            </th>
+                            <th class="number1">
+                                %
+                            </th>
+                            <th class="view" style=" width: 140px; ">BitClout Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in usersToTrackData" :key="index">
+                            <td>
+                                <div class="profile">
+                                    <img :src="item.image">
+                                    <div class="name" style="display: inline-block;">{{item.username}}</div>
+                                </div>
+                            </td>
+                            <td class="number">
+                                <span style="transform: translateX(-50%); margin-left: 50%;">
+                                    {{item.coinPriceText}}
+                                </span>
+                            </td>
+                            <td class="number change">
+                                <span style="transform: translateX(-50%); margin-left: 50%;color:#3e4676">
+                                    {{item.percentageCalcPrev.text}}
+                                </span>
+                            </td>
+                            <td class="number change">
+                                <span
+                                    :style="`transform: translateX(-50%); margin-left: 50%;color:${item.percentageCalc.color}`">
+                                    {{item.percentageCalc.text}}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <a target="_new" class="button lite"
+                                        style="transform: translateX(-50%); margin-left: 50%;"
+                                        :href="`https://bitclout.com/u/${item.username}`">View</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="../vendors/js/vue.js"></script>
+    <script src="../vendors/js/jquery-3.6.0.min.js"></script>
+    <script src="../js/HelpfulFunctions.js"></script>
+    <script src="../vendors/js/jquery.tagsinput.min.js"></script>
+    <script src="../js/popup.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "Clout Faves",
+  "description": "Clout Faves",
+  "version": "1.6",
+  "browser_action": {
+    "default_popup": "lib/html/popup.html",
+    "default_icon": "lib/images/logo-192.png",
+    "default_title": "Clout Faves"
+  },
+  "web_accessible_resources": [
+    "*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://bitclout.com/u/*"
+      ],
+      "js": [
+        "lib/js/HelpfulFunctions.js",
+        "lib/js/content.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "lib/js/HelpfulFunctions.js",
+      "lib/js/bg.js"
+    ],
+    "persistent": true
+  },
+  "icons": {
+    "192": "lib/images/logo-192.png"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "permissions": [
+    "storage",
+    "https://bitclout.com/*",
+    "notifications"
+  ]
+}
